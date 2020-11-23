@@ -1,1 +1,1 @@
-<img src="{{ Storage::disk('public')->url('icon.png') }}" {{ $attributes }} />
+<img src="/icon.png" {{ $attributes }} />
