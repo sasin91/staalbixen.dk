@@ -1,0 +1,12 @@
+{
+	"Laravel Jetstream nav link": {
+		"scope": "php, blade",
+		"prefix": "x-jet-nav-link",
+		"description": "Laravel jetstream desktop nav link",
+		"body": [
+			"<x-jet-nav-link href='{{ route(\"$1\") }}' :active='request()->routeIs(\"$1\")'>",
+			"\t$2",
+			"</x-jet-nav-link>"
+		]
+	}
+}

@@ -1,0 +1,13 @@
+{
+	"Eloquent has many": {
+		"scope": "php",
+		"prefix": "hasMany",
+		"description": "Laravel Eloquent Model: HasMany definition",
+		"body": [
+			"public function $1(): HasMany",
+			"{",
+			"\treturn \\$this->HasMany(${1/^(.)(.*)$/${1:/upcase}${2}/}::class);",
+			"}"
+		]
+	}
+}

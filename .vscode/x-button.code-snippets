@@ -1,0 +1,12 @@
+{
+	"x-button": {
+		"scope": "php,blade",
+		"description": "Laravel blade button component",
+		"prefix": "x-button",
+		"body": [
+			"<x-button color='$1'$2>",
+			"\t$3",
+			"</x-button>"
+		]
+	}
+}

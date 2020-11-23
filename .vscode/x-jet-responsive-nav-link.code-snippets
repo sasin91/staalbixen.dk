@@ -1,0 +1,12 @@
+{
+	"Laravel Jetstream mobile nav link": {
+		"scope": "php, blade",
+		"prefix": "x-jet-responsive-nav-link",
+		"description": "Laravel jetstream mobile nav link",
+		"body": [
+			"<x-jet-responsive-nav-link href='{{ route(\"$1\") }}' :active='request()->routeIs(\"$1\")'>",
+			"\t$2",
+			"</x-jet-responsive-nav-link>"
+		]
+	}
+}

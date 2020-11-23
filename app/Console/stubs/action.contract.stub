@@ -1,0 +1,10 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyFullContractClass;
+
+class DummyClass implements DummyContractClass
+{
+    //
+}
