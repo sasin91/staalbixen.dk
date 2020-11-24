@@ -28,7 +28,7 @@ class Delivery extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'status';
 
     /**
      * The columns that should be searched.
