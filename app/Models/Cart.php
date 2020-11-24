@@ -17,8 +17,8 @@ class Cart extends Model implements CurrentCart
 
     protected $casts = [
         'status' => CartStatus::class,
-        'abandoned_at' => 'timestamp',
-        'purchased_at' => 'timestamp'
+        'abandoned_at' => 'datetime',
+        'purchased_at' => 'datetime'
     ];
 
     public function scopeExpired($query)
