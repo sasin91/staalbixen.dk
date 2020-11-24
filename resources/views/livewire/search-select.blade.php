@@ -23,11 +23,13 @@
         @endif
       @else
       <label id="listbox-label"
+            for="{{ $id }}"
             class="block text-sm leading-5 font-medium text-gray-700"
             wire:click="$toggle('visible')"
         >
         <div class="relative">
             <input
+                id="{{ $id }}"
                 class="form-input block w-full py-2 pr-10 pl-10 sm:text-sm sm:leading-5 bg-transparent border-none"
                 type="search"
                 autocomplete="search"

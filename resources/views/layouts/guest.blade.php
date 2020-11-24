@@ -5,11 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="theme-color" content="#f4f5f7"/>
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+        <link rel="manifest" href="/site.webmanifest">
+
         <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
         <link rel="icon" type="image/png" href="/manifest-icon-192.png">
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180.jpg">
         <link rel="apple-touch-icon" sizes="167x167" href="/apple-icon-167.jpg">
@@ -46,11 +48,6 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         @livewireStyles
-
-        <!-- Scripts -->
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
-        <script src="https://unpkg.com/@popperjs/core@2"></script>
-        <script src="https://unpkg.com/tippy.js@6"></script>
         @stack('head')
     </head>
     <body class="font-sans antialiased">
@@ -82,13 +79,8 @@
 
         <footer class="bg-white">
             @livewireScripts
+            <script type="text/javascript" src="{{ asset('js/app.js') }}" />
             @stack('scripts')
-
-            <script type="text/javascript" defer>
-                tippy('[data-tippy-content]', {
-                  allowHTML: true
-                })
-            </script>
 
             <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden space-y-8 sm:px-6 lg:px-8">
             <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">

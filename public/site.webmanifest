@@ -1,7 +1,13 @@
 {
   "display": "standalone",
-  "name": "Stålbixen",
+  "name": "Stålbixen - Alt i stål og overfalde behandling",
+  "description": "StålBixen tilbyder alt i stål arbejde og overfladebehandling. Kontakt Rune for et uforpligtende tilbud.",
   "shortName": "Stålbixen",
+  "theme-color": "#f4f5f7",
+  "start_url": "/?source=pwa",
+  "background_color": "#f4f5f7",
+  "scope": "/",
+  "theme_color": "#f4f5f7",
   "icons": [
     {
       "src": "manifest-icon-192.png",

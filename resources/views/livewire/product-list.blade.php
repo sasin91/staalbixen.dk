@@ -7,6 +7,13 @@
     </script>
 @endpush
 
+@push('head')
+<meta
+  name="description"
+  content="StålBixens tilbyder alt i stål arbejde samt overfladebehandling."
+/>
+@endpush
+
 <div class="px-4 py-5 sm:px-6 bg-gray-100">
     <div
         class="bg-gray-50 -ml-4 -mt-2 flex justify-around flex-wrap sm:flex-no-wrap px-4 py-5 sm:px-6 border-b border-gray-200">
@@ -28,17 +35,19 @@
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <x-heroicon-s-search class="text-blue-700 w-6 h-6" />
                 </div>
-                <input
-                    wire:model.lazy="search"
-                    type="search"
-                    autocomplete="search"
-                    aria-autocomplete="both"
-                    spellcheck="on"
-                    autofocus="on"
-                    autocorrect="on"
-                    class="form-input block w-full border-none text-blue-600 bg-transparent pt-2 pl-10 sm:text-sm sm:leading-5"
-                    placeholder="{{ __('search') }}"
-                />
+                <label>
+                    <input
+                        wire:model.lazy="search"
+                        type="search"
+                        autocomplete="search"
+                        aria-autocomplete="both"
+                        spellcheck="on"
+                        autofocus="on"
+                        autocorrect="on"
+                        class="form-input block w-full border-none text-blue-600 bg-transparent pt-2 pl-10 sm:text-sm sm:leading-5"
+                        placeholder="{{ __('search') }}"
+                    />
+                </label>
             </div>
         </div>
     </div>

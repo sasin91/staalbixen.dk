@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use function filled;
+use Livewire\Component;
+use Illuminate\Support\Str;
 
 class SearchSelect extends Component
 {
@@ -72,6 +73,8 @@ class SearchSelect extends Component
 
     public function render()
     {
-        return view('livewire.search-select');
+        return view('livewire.search-select', [
+            'id' => 'search-select-' . Str::random(),
+        ]);
     }
 }

@@ -19,31 +19,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('terms', 'terms')
-    ->name('terms');
+Route::middleware('cache.headers:public;max_age=2628000;etag')->group(
+    function () {
+        Route::view('terms', 'terms')
+            ->name('terms');
 
-Route::view('privacy', 'privacy')
-    ->name('privacy');
+        Route::view('privacy', 'privacy')
+            ->name('privacy');
 
-Route::view('about', 'about')
-    ->name('about');
+        Route::view('about', 'about')
+            ->name('about');
 
-Route::get('contact', Contact::class)
-    ->name('contact');
+        Route::get('contact', Contact::class)
+            ->name('contact');
+
+        Route::get('/', ProductList::class)
+            ->name('welcome');
+
+        Route::get('/products/{product}', ProductDetails::class)
+            ->name('products.show');
+
+        Route::get('/checkout', Checkout::class)
+            ->name('checkout');
+
+        Route::get('thanks/{cart}', Thanks::class)
+            ->name('thanks')
+            ->middleware('signed');
+    }
+);
 
 Route::get('dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
-
-
-Route::get('/', ProductList::class)
-    ->name('welcome');
-
-Route::get('/products/{product}', ProductDetails::class)
-    ->name('products.show');
-
-Route::get('/checkout', Checkout::class)
-    ->name('checkout');
-
-Route::get('thanks/{cart}', Thanks::class)
-    ->name('thanks')
-    ->middleware('signed');
