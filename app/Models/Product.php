@@ -41,6 +41,11 @@ class Product extends Model
         return $this->hasOne(ProductPrice::class)->latest();
     }
 
+    public function photos()
+    {
+        return $this->morphMany(Photo::class, 'model');
+    }
+
     public function newEloquentBuilder($query)
     {
         return new ProductBuilder($query);

@@ -2,27 +2,22 @@
 
 namespace App\Nova;
 
-use App\Enums\ProductStock;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Badge;
-use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Image;
-use Laravel\Nova\Fields\Number;
-use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\HasMany;
-use Laravel\Nova\Fields\MorphMany;
+use Laravel\Nova\Fields\MorphTo;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use SimpleSquid\Nova\Fields\Enum\Enum;
 
-class Product extends Resource
+class Photo extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Product::class;
+    public static $model = \App\Models\Photo::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -37,8 +32,7 @@ class Product extends Resource
      * @var array
      */
     public static $search = [
-        'id',
-        'name',
+        'name', 'path', 'model_type'
     ];
 
     /**
@@ -53,29 +47,26 @@ class Product extends Resource
             ID::make(__('ID'), 'id')
                 ->sortable(),
 
-            BelongsTo::make(__('Category'), 'category', ProductCategory::class)
-                ->sortable()
-                ->showOnIndex(),
-
-            Image::make(__('Photo'), 'photo_url'),
-
             Text::make(__('Name'), 'name')
+                ->sortable()
+                ->default(fn (NovaRequest $request) => __('Photo of :product', ['product' => $request->findParentModelOrFail()->name]))
+                ->help('Beskriv billedet kort; Dette vil blive vist hvis billedet ikke indlæses korrekt, og læst af skærmlæsere.'),
+
+            Image::make(__('Photo'), 'path', 'photos')
                 ->sortable(),
 
-            Badge::make(__('Stock'), 'stock')
-                ->types(ProductStock::$types)
-                ->map(ProductStock::map())
-                ->resolveUsing(fn ($stock) => $stock->value),
+            MorphTo::make(__('Model'), 'model')
+                ->types(
+                    [
+                        Product::class
+                    ]
+                )
+                ->sortable()
+                ->exceptOnForms(),
 
-            Text::make(__('Slug'), 'slug')
-                ->onlyOnDetail(),
-
-            Text::make(__('Description'), 'description')
-                ->onlyOnDetail(),
-
-            BelongsTo::make(__('Latest Price'), 'latestPrice', ProductPrice::class),
-            HasMany::make(__('Prices'), 'prices', ProductPrice::class),
-            MorphMany::make(__('Photos'), 'photos', Photo::class),
+            Date::make(__('Created'), 'created_at')
+                ->exceptOnForms()
+                ->sortable(),
         ];
     }
 
