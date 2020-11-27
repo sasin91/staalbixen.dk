@@ -7,9 +7,9 @@
     </script>
 @endpush
 
-<x-checkout-card class="mb-6">
+<x-checkout-card class="flex justify-center mb-6 sm:w-full">
     @if ($this->cart->isEmpty())
-        <x-alert type="info">
+        <x-alert class="bg-white" type="info">
             {{ __('Your cart is empty.') }}
         </x-alert>
     @endif
@@ -18,20 +18,20 @@
     @include('livewire.checkout.payment')
     @include('livewire.checkout.purchase')
 
-    <div class="flex-1 flex flex-col justify-between space-y-2 mt-6">
+    <div class="flex flex-col justify-between flex-1 mt-6 space-y-2">
         <div class="flex items-center justify-between">
             <p>{{ __('Total incl. taxes') }}</p>
             <p>{{ Money::format($this->cart->totalCost()) }}</p>
         </div>
 
         <div class="flex items-center justify-between">
-            <span class="flex-grow flex flex-col" id="toggleLabel">
-                <span class="text-sm leading-5 font-medium text-gray-900">{{ __('I accept the following:') }}</span>
+            <span class="flex flex-col flex-grow" id="toggleLabel">
+                <span class="text-sm font-medium leading-5 text-gray-900">{{ __('I accept the following:') }}</span>
                 <ol class="list-none">
-                    <li class="text-sm leading-normal underline text-indigo-700 hover:text-indigo-500">
+                    <li class="text-sm leading-normal text-indigo-700 underline hover:text-indigo-500">
                         <a target="_blank" href="{{ route('terms') }}">{{ __('Terms of service') }}</a>
                     </li>
-                    <li class="text-sm leading-normal underline text-indigo-700 hover:text-indigo-500">
+                    <li class="text-sm leading-normal text-indigo-700 underline hover:text-indigo-500">
                         <a target="_blank" href="{{ route('privacy') }}">{{ __('Privacy conditions') }}</a>
                     </li>
                 </ol>

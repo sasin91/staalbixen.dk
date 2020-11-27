@@ -1,48 +1,48 @@
-<x-checkout-card class="mt-6">
+<x-checkout-card class="bg-white">
     <x-slot name="heading">
-        <div class="pb-5 bg-blue-700 rounded-t-md px-4 py-5 sm:px-6 border-b border-gray-200 space-y-3 sm:flex sm:items-center sm:justify-between sm:space-x-4 sm:space-y-0">
-            <h3 class="text-lg leading-6 font-medium text-white py-2">
+        <div class="px-4 py-5 pb-5 space-y-3 bg-blue-700 border-b border-gray-200 rounded-t-md sm:px-6 sm:flex sm:items-center sm:justify-between sm:space-x-4 sm:space-y-0">
+            <h3 class="py-2 text-lg font-medium leading-6 text-white">
                 {{ __('Your purchase') }}
             </h3>
         </div>
     </x-slot>
 
-    <div class="flex-1 flex flex-col justify-between">
-        <ul class="divide-y divide-gray-200 overflow-y-auto">
+    <div class="flex flex-col justify-between flex-1">
+        <ul class="overflow-y-auto divide-y divide-gray-200">
             @foreach($items as $item)
-                <li class="px-6 py-5 relative"
+                <li class="relative px-6 py-5"
                     data-tippy-content="{{ __(':stock remaining', ['stock' => $item->product->stock->value]) }}"
                 >
-                    <div class="group flex justify-between items-center space-x-4">
-                        <a href="#" class="-m-1 p-1 block">
+                    <div class="flex items-center justify-between space-x-4 group">
+                        <a href="#" class="block p-1 -m-1">
                             <span class="absolute inset-0 group-hover:bg-gray-50"></span>
-                            <div class="flex-1 flex items-center min-w-0 relative">
-                                <span class="flex-shrink-0 inline-block relative">
-                                    <img class="h-10 w-10 rounded-full" src="{{ $item->product->photo_url }}"
+                            <div class="relative flex items-center flex-1 min-w-0">
+                                <span class="relative flex-shrink-0 inline-block">
+                                    <img class="w-10 h-10 rounded-full" src="{{ $item->product->photo_url }}"
                                         alt="{{ __('Photo of :productName', ['productName' => $item->product->name]) }}">
                                     <span
                                         class="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full {{ $item->product->stock->css() }}"></span>
                                 </span>
                                 <div class="ml-4 truncate">
                                     <div
-                                        class="text-sm leading-5 font-medium text-gray-900 truncate">{{ $item->product->name }}</div>
+                                        class="text-sm font-medium leading-5 text-gray-900 truncate">{{ $item->product->name }}</div>
                                     <div
                                         class="text-sm leading-5 text-gray-500 truncate">{{ Money::format($item->cost) }}</div>
                                 </div>
                             </div>
                         </a>
-                        <div class="-m-1 p-1 block text-left">
-                            <div class="h-10 w-32">
+                        <div class="block p-1 -m-1 text-left">
+                            <div class="w-32 h-10">
                                 <div
-                                    class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                                    class="relative flex flex-row w-full h-10 mt-1 bg-transparent rounded-lg">
                                     <button wire:click="removeProductFromCart({{ $item->product_id }})"
-                                            class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                                            class="w-20 h-full text-gray-600 bg-gray-300 rounded-l outline-none cursor-pointer hover:text-gray-700 hover:bg-gray-400">
                                         <span class="m-auto text-2xl font-thin">−</span>
                                     </button>
 
                                     <input id="item_{{ $item->id }}_quantity"
                                             value="{{ $item->quantity }}"
-                                            class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-base cursor-default flex items-center text-gray-700 outline-none"
+                                            class="flex items-center w-full font-semibold text-center text-gray-700 bg-gray-300 outline-none cursor-default focus:outline-none text-md hover:text-black focus:text-black md:text-base"
                                     />
 
                                     <button
