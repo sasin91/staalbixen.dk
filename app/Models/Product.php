@@ -21,6 +21,17 @@ class Product extends Model
         'stock' => ProductStock::class
     ];
 
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+
     public function scopePurchasable($query)
     {
         return $query->where('stock', '>=', 1);
